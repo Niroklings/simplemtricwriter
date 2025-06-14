@@ -43,17 +43,16 @@ jobs:
       run: |
         cd build
         make -j4
-        
-    - name: Run tests
-      run: |
-        cd build
-        ctest --output-on-failure
-        
     - name: Run Python tests
       run: |
         pip install pytest
         python -m pytest tests/
         
+    - name: Run tests
+      run: |
+        cd build
+        ctest --output-on-failure
+
     - name: Cache brew (macOS)
       if: runner.os == 'macOS'
       uses: actions/cache@v3
